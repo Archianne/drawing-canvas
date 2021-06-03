@@ -8,15 +8,8 @@ let rainbowIsOn = false;
 let hue = 0;
 
 window.addEventListener("load", () => {
-  window.addEventListener("resize", resizeCanvas, false);
-
-  //resizing
-  function resizeCanvas() {
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-  }
-
-  resizeCanvas();
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
 
   function draw(e) {
     if (!drawing) {
