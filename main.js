@@ -8,20 +8,27 @@ let rainbowIsOn = false;
 let hue = 0;
 
 window.addEventListener("load", () => {
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
 
-  function draw(e) {
+  function drawStart(e) {
+    drawing = true;
+    ctx.beginPath();
+    drawMove(e);
+  }
+
+  function drawMove(e) {
     if (!drawing) {
       return;
     } else {
       ctx.lineWidth = 5;
       ctx.lineCap = "round";
 
-      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.lineTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
       ctx.stroke();
       ctx.beginPath();
       ctx.moveTo(e.offsetX, e.offsetY);
+
       ctx.strokeStyle = colorPick.value;
     }
 
@@ -34,28 +41,39 @@ canvas.width = window.innerWidth;
     }
   }
 
-  canvas.addEventListener("mousemove", draw);
-
-  canvas.addEventListener("mousedown", (e) => {
-    drawing = true;
-    draw(e);
-  });
-
-  canvas.addEventListener("mouseup", () => {
+  function drawEnd() {
     drawing = false;
     ctx.beginPath();
-  });
+  }
 
-  canvas.addEventListener("mouseout", () => {
-    drawing = false;
-    ctx.beginPath();
-  });
+  canvas.addEventListener("mousedown", drawStart);
+  canvas.addEventListener("mousemove", drawMove);
+  canvas.addEventListener("mouseup", drawEnd);
+  canvas.addEventListener("mouseout", drawEnd);
+  
+  //touchscreen
+  canvas.addEventListener("touchstart", (e) => {
+      drawStart(e.touches[0]);
+    }, false
+  );
+
+  canvas.addEventListener("touchmove", (e) => {
+      drawMove(e.touches[0]);
+      e.preventDefault();
+    }, false
+  );
+
+  canvas.addEventListener("touchend", (e) => {
+      drawEnd(e.changedTouches[0]);
+    }, false
+  );
 
   //rainbow button
   rainbowPick.addEventListener("click", () => {
     rainbowIsOn = !rainbowIsOn;
     if (!rainbowIsOn) {
       ctx.strokeStyle = colorPick.value;
-    }
-  });
+      }
+    });
+    
 });
