@@ -33,7 +33,7 @@ window.addEventListener("load", () => {
       ctx.strokeStyle = colorPick.value;
     }
 
-    rainbowActive()
+    isRainbowActive();
   }
 
   function touchMove(e) {
@@ -41,14 +41,17 @@ window.addEventListener("load", () => {
     let touch = e.touches[0];
     touchX = touch.pageX - touch.target.offsetLeft;
     touchY = touch.pageY - touch.target.offsetTop;
-    
+
     if (!drawing) {
       return;
     } else {
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
       ctx.lineTo(touchX, touchY);
       ctx.stroke();
+      [lastX, lastY] = [touchX, touchY];
     }
-    rainbowActive()
+    isRainbowActive();
   }
 
   function drawEnd() {
@@ -77,10 +80,10 @@ window.addEventListener("load", () => {
     }
   });
 
-  function rainbowActive() {
+  function isRainbowActive() {
     if (rainbowIsOn) {
-      hue++;
       ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+      hue++;
       if (hue >= 360) {
         hue = 0;
       }
