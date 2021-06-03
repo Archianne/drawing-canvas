@@ -26,20 +26,24 @@ let controls = () => {
 
 //drawing start, moving, end
 let drawStart = (e) => {
+  let X = e.offsetX;
+  let Y = e.offsetY;
   drawing = true;
-  [lastX, lastY] = [e.offsetX, e.offsetY];
+  [lastX, lastY] = [X, Y];
   drawMove(e);
 };
 
 let drawMove = (e) => {
+  let X = e.offsetX;
+  let Y = e.offsetY;
   if (!drawing) {
     return;
   } else {
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
-    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.lineTo(X, Y);
     ctx.stroke();
-    [lastX, lastY] = [e.offsetX, e.offsetY];
+    [lastX, lastY] = [X, Y];
     controls();
   }
 
@@ -49,8 +53,8 @@ let drawMove = (e) => {
 let touchMove = (e) => {
   e.preventDefault();
   let touch = e.touches[0];
-  touchX = touch.pageX - touch.target.offsetLeft;
-  touchY = touch.pageY - touch.target.offsetTop;
+  let touchX = touch.pageX - touch.target.offsetLeft;
+  let touchY = touch.pageY - touch.target.offsetTop;
 
   if (!drawing) {
     return;
