@@ -112,9 +112,17 @@ saveCanvas.addEventListener("click", () => {
   const a = document.createElement("a");
   a.style.display = "none";
   a.href = url;
-  a.download = `Canvas`;
+  a.download = `Canvas-${getTime()}`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   alert("File downloaded!");
 });
+
+function getTime() {
+  var today = new Date();
+  var date = today.getDate();
+  var month = today.getMonth() + 1;
+  var year = today.getFullYear();
+  return date + "-" + month + "-" + year;
+}
