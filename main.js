@@ -4,6 +4,7 @@ const colorPick = document.querySelector("#color");
 const rainbowPick = document.querySelector("#rainbow-button");
 const sizePick = document.querySelector("#size");
 const resetCanvas = document.querySelector("#reset-button");
+const saveCanvas = document.querySelector("#save-button");
 
 let drawing = false;
 let rainbowIsOn = false;
@@ -21,14 +22,14 @@ window.addEventListener("load", () => {
 let controls = () => {
   ctx.strokeStyle = colorPick.value;
   ctx.lineWidth = sizePick.value;
-}
+};
 
 //drawing start, moving, end
 let drawStart = (e) => {
   drawing = true;
   [lastX, lastY] = [e.offsetX, e.offsetY];
   drawMove(e);
-}
+};
 
 let drawMove = (e) => {
   if (!drawing) {
@@ -43,7 +44,7 @@ let drawMove = (e) => {
   }
 
   isRainbowActive();
-}
+};
 
 let touchMove = (e) => {
   e.preventDefault();
@@ -62,12 +63,12 @@ let touchMove = (e) => {
     controls();
   }
   isRainbowActive();
-}
+};
 
 let drawEnd = () => {
   drawing = false;
   ctx.beginPath();
-}
+};
 
 //mouse
 canvas.addEventListener("mousedown", drawStart);
@@ -76,9 +77,9 @@ canvas.addEventListener("mouseup", drawEnd);
 canvas.addEventListener("mouseout", drawEnd);
 
 //touchscreen
-canvas.addEventListener("touchstart", (e) => (drawStart(e.touches[0])), { passive: false });
+canvas.addEventListener("touchstart", (e) => drawStart(e.touches[0]), { passive: false });
 canvas.addEventListener("touchmove", touchMove, { passive: false });
-canvas.addEventListener("touchend", () => (drawEnd()), false);
+canvas.addEventListener("touchend", () => drawEnd(), false);
 
 //rainbow button
 rainbowPick.addEventListener("click", () => {
@@ -98,9 +99,22 @@ let isRainbowActive = () => {
       hue = 0;
     }
   }
-}
+};
 
 //reset canvas
-resetCanvas.addEventListener('click', () => {
+resetCanvas.addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-})
+});
+
+//save canvas
+saveCanvas.addEventListener("click", () => {
+  const url = canvas.toDataURL();
+  const a = document.createElement("a");
+  a.style.display = "none";
+  a.href = url;
+  a.download = `Canvas`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  alert("File downloaded!");
+});
