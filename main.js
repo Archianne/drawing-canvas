@@ -9,11 +9,12 @@ let hue = 0;
 let lastX = 0;
 let lastY = 0;
 
-window.addEventListener("load", () => {
+window.addEventListener('load', () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
   ctx.lineCap = "round";
   ctx.lineWidth = 5;
+})
 
   function drawStart(e) {
     drawing = true;
@@ -89,4 +90,3 @@ window.addEventListener("load", () => {
       }
     }
   }
-});
