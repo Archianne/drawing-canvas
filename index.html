@@ -5,31 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/8a7df27cab.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Drawing Canvas</title>
   </head>
 
   <body>
     <header>
       <h1>Drawing Canvas</h1>
-      <section>
-        <input type="color" name="color" id="color" />
-
-        <button id="rainbow-button">Rainbow</button>
-
-        <input
-          id="size"
-          type="range"
-          name="size"
-          min="1"
-          max="100"
-          value="5"
-          oninput="number.value = this.value"
-        />
-        <output id="number">5</output>
-
-        <button id="reset-button">Reset</button>
-
-        <button id="save-button">Save</button>
+      <section id="controls">
+        <!-- color -->
+        <label for="color"
+          >Color:
+          <input type="color" name="color" id="color" />
+        </label>
+        <!-- rainbow -->
+        <button id="rainbow-button">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
+        <!-- size -->
+        <label for="size"
+          >Size:
+          <input
+            id="size"
+            type="range"
+            name="size"
+            min="1"
+            max="100"
+            value="5"
+            oninput="number.value = this.value"
+          />
+          <output id="number">5</output>
+        </label>
+        <!-- reset -->
+        <button id="reset-button">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+        <!-- save -->
+        <button id="save-button">
+          <i class="fa fa-download" aria-hidden="true"></i>
+        </button>
       </section>
     </header>
 

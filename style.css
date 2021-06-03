@@ -1,13 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+
+:root {
+  --accent1: #f89e9d;
+  --accent2: #6490d2;
+  --accent3: #f8f4eb;
+
+  --text-font: 12px "Poppins";
+  --title-font: 3em "Lobster";
+}
+
 body,
 html {
   margin: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+
+h1 {
+  font: var(--title-font);
+  font-weight: bold;
+  color: var(--accent2);
+  text-align: center;
+}
+
+#controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+button, #color {
+  width: 50px;
+  height: 30px;
+  border: outset 2px;
+  border-radius: 5px;
+}
+
+button:active {
+  border: inset 2px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+}
+
+#rainbow-button {
+  background-image: linear-gradient(red, orange, yellow, green, blue, purple);
+  color: whitesmoke;
 }
 
 #canvas {
   display: block;
-  background-color: whitesmoke;
+  background-color: var(--accent3);
   width: 100%;
 }
 
