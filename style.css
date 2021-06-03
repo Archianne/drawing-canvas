@@ -1,11 +1,22 @@
-body, html {
-    margin: 0;
-    width: 100%;
-    height: 100%;
+body,
+html {
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }
 
 #canvas {
-    display:block;
-    background-color: whitesmoke;  
-    width: 100%;
+  display: block;
+  background-color: whitesmoke;
+  width: 100%;
+}
+
+.canvas-section {
+  /* Prevent nearby text being accidentally highlighted */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
