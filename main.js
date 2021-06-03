@@ -6,14 +6,18 @@ const rainbowPick = document.querySelector("#rainbow-button");
 let drawing = false;
 let rainbowIsOn = false;
 let hue = 0;
+let lastX = 0;
+let lastY = 0;
 
 window.addEventListener("load", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
+  ctx.lineCap = "round";
+  ctx.lineWidth = 5;
 
   function drawStart(e) {
     drawing = true;
-    ctx.beginPath();
+    [lastX, lastY] = [e.offsetX, e.offsetY];
     drawMove(e);
   }
 
@@ -21,24 +25,30 @@ window.addEventListener("load", () => {
     if (!drawing) {
       return;
     } else {
-      ctx.lineWidth = 5;
-      ctx.lineCap = "round";
-
-      ctx.lineTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
-      ctx.stroke();
       ctx.beginPath();
-      ctx.moveTo(e.offsetX, e.offsetY);
-
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+      [lastX, lastY] = [e.offsetX, e.offsetY];
       ctx.strokeStyle = colorPick.value;
     }
 
-    if (rainbowIsOn) {
-      hue++;
-      ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-      if (hue >= 360) {
-        hue = 0;
-      }
+    rainbowActive()
+  }
+
+  function touchMove(e) {
+    e.preventDefault();
+    let touch = e.touches[0];
+    touchX = touch.pageX - touch.target.offsetLeft;
+    touchY = touch.pageY - touch.target.offsetTop;
+    
+    if (!drawing) {
+      return;
+    } else {
+      ctx.lineTo(touchX, touchY);
+      ctx.stroke();
     }
+    rainbowActive()
   }
 
   function drawEnd() {
@@ -46,27 +56,16 @@ window.addEventListener("load", () => {
     ctx.beginPath();
   }
 
+  //mouse
   canvas.addEventListener("mousedown", drawStart);
   canvas.addEventListener("mousemove", drawMove);
   canvas.addEventListener("mouseup", drawEnd);
   canvas.addEventListener("mouseout", drawEnd);
-  
+
   //touchscreen
-  canvas.addEventListener("touchstart", (e) => {
-      drawStart(e.touches[0]);
-    }, { passive: false }
-  );
-
-  canvas.addEventListener("touchmove", (e) => {
-      drawMove(e.touches[0]);
-      e.preventDefault();
-    }, { passive: false }
-  );
-
-  canvas.addEventListener("touchend", (e) => {
-      drawEnd(e.changedTouches[0]);
-    }, false
-  );
+  canvas.addEventListener("touchstart", (e) => (drawStart(e.touches[0])), { passive: false });
+  canvas.addEventListener("touchmove", touchMove, { passive: false });
+  canvas.addEventListener("touchend", () => (drawEnd()), false);
 
   //rainbow button
   rainbowPick.addEventListener("click", () => {
@@ -75,7 +74,16 @@ window.addEventListener("load", () => {
     if (!rainbowIsOn) {
       ctx.strokeStyle = colorPick.value;
       rainbowPick.style.backgroundColor = "";
+    }
+  });
+
+  function rainbowActive() {
+    if (rainbowIsOn) {
+      hue++;
+      ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+      if (hue >= 360) {
+        hue = 0;
       }
-    });
-    
+    }
+  }
 });
