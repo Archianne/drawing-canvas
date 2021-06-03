@@ -54,13 +54,13 @@ window.addEventListener("load", () => {
   //touchscreen
   canvas.addEventListener("touchstart", (e) => {
       drawStart(e.touches[0]);
-    }, false
+    }, { passive: false }
   );
 
   canvas.addEventListener("touchmove", (e) => {
       drawMove(e.touches[0]);
       e.preventDefault();
-    }, false
+    }, { passive: false }
   );
 
   canvas.addEventListener("touchend", (e) => {
@@ -71,8 +71,10 @@ window.addEventListener("load", () => {
   //rainbow button
   rainbowPick.addEventListener("click", () => {
     rainbowIsOn = !rainbowIsOn;
+    rainbowPick.style.backgroundColor = "red";
     if (!rainbowIsOn) {
       ctx.strokeStyle = colorPick.value;
+      rainbowPick.style.backgroundColor = "";
       }
     });
     
