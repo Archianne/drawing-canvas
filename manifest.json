@@ -3,7 +3,7 @@
     "short_name": "Drawing App",
     "start_url": ".",
     "background_color": "#023047",
-    "theme_color": "#219EBC",
+    "theme_color": "#f8f4eb",
     "display": "standalone",
     "icons": [
       {

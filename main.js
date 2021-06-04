@@ -53,7 +53,6 @@ let drawMove = (e) => {
     [lastX, lastY] = [X, Y];
     controls();
   }
-
   isRainbowActive();
 };
 
@@ -97,6 +96,7 @@ rainbowPick.addEventListener("click", () => {
   rainbowIsOn = !rainbowIsOn;
   rainbowPick.classList.add("rainbow-active");
   eraserClick = false;
+  eraser.style.backgroundColor = "";
   if (!rainbowIsOn) {
     rainbowPick.classList.remove("rainbow-active");
   }
@@ -118,6 +118,7 @@ let toggleButtons = () => {
     rainbowPick.classList.remove("rainbow-active");
   } else if (eraserClick) {
     eraserClick = false;
+    eraser.style.backgroundColor = "";
   }
 };
 
@@ -145,6 +146,7 @@ let eraserBrush = () => {
   if (!eraserClick) {
     eraserClick = true;
     ctx.strokeStyle = "#f8f4eb";
+    eraser.style.backgroundColor = "#ff6347";
   }
   rainbowIsOn = false;
   rainbowPick.classList.remove("rainbow-active");

@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 
 :root {
-  --accent1: tomato;
+  --accent1: #ff6347;
   --accent2: #003b6f;
   --accent3: #f8f4eb;
 
@@ -54,6 +54,10 @@ button {
   border-radius: 5px;
   background-color: var(--accent3);
   color: var(--accent2);
+}
+
+button:hover {
+  background-color: var(--accent1);
 }
 
 button:active {
