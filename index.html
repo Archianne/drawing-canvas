@@ -16,19 +16,21 @@
     <header>
       <h1>Drawing Canvas</h1>
       <section id="controls">
+        
         <!-- color -->
         <label for="color"
           >Color:
-          <input type="color" name="color" id="color" />
+          <input class="controls" type="color" name="color" id="color" />
         </label>
         <!-- rainbow -->
-        <button id="rainbow-button">
-          <i class="fa fa-pencil" aria-hidden="true"></i>
+        <button class="controls" id="rainbow-button">
+          🌈</i>
         </button>
         <!-- size -->
-        <label for="size"
+        <label for="size" id="size-label"
           >Size:
           <input
+          class="controls"
             id="size"
             type="range"
             name="size"
@@ -39,14 +41,17 @@
           />
           <output id="number">5</output>
         </label>
+
+        <div>
         <!-- reset -->
-        <button id="reset-button">
+        <button class="controls" id="reset-button">
           <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
         <!-- save -->
-        <button id="save-button">
+        <button class="controls" id="save-button">
           <i class="fa fa-download" aria-hidden="true"></i>
         </button>
+        </div>
       </section>
     </header>
 

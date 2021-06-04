@@ -2,14 +2,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 
 :root {
-  --accent1: #f89e9d;
-  --accent2: #6490d2;
+  --accent1: tomato;
+  --accent2: #003B6F;
   --accent3: #f8f4eb;
 
   --text-font: 12px "Poppins";
   --title-font: 3em "Lobster";
 }
 
+/* main */
 body,
 html {
   margin: 0;
@@ -25,6 +26,7 @@ h1 {
   text-align: center;
 }
 
+/* controls */
 #controls {
   display: flex;
   flex-direction: row;
@@ -33,11 +35,24 @@ h1 {
   margin-bottom: 10px;
 }
 
-button, #color {
-  width: 50px;
+.controls {
+  cursor: pointer;
+}
+
+#color {
+  width: 30px;
+  height: 30px;
+  border: none;
+  margin: 0 5px;
+}
+
+button {
+  width: 30px;
   height: 30px;
   border: outset 2px;
   border-radius: 5px;
+  background-color: var(--accent3);
+  color: var(--accent2);
 }
 
 button:active {
@@ -49,11 +64,23 @@ label {
   align-items: center;
 }
 
-#rainbow-button {
+.rainbow-active {
   background-image: linear-gradient(red, orange, yellow, green, blue, purple);
-  color: whitesmoke;
+  color: var(--accent2);
+  width: 35px;
+  height: 35px;
+  border: inset 2px;
 }
 
+#size-label {
+  width: 120px;
+}
+
+#size {
+  width: 100px;
+}
+
+/* canvas */
 #canvas {
   display: block;
   background-color: var(--accent3);

@@ -88,10 +88,10 @@ canvas.addEventListener("touchend", () => drawEnd(), false);
 //rainbow button
 rainbowPick.addEventListener("click", () => {
   rainbowIsOn = !rainbowIsOn;
-  rainbowPick.style.backgroundColor = "red";
+  rainbowPick.classList.add("rainbow-active");
   if (!rainbowIsOn) {
     ctx.strokeStyle = colorPick.value;
-    rainbowPick.style.backgroundColor = "";
+    rainbowPick.classList.remove("rainbow-active");;
   }
 });
 
