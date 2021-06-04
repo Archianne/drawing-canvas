@@ -19,7 +19,8 @@ h1 {
 }
 
 #reset-button,
-#save-button {
-  width: 40vw;
+#save-button, #eraser-button {
+  width: 30vw;
   height: 25px;
+  margin: 10px 0 0;
 }

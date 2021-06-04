@@ -3,11 +3,13 @@ const ctx = canvas.getContext("2d");
 const rainbowPick = document.querySelector("#rainbow-button");
 const sizePick = document.querySelector("#size");
 const colorPick = document.querySelector("#color-pick");
+const eraser = document.querySelector("#eraser-button");
 const resetCanvas = document.querySelector("#reset-button");
 const saveCanvas = document.querySelector("#save-button");
 
 let drawing = false;
 let rainbowIsOn = false;
+let eraserClick = false;
 let hue = 0;
 let lastX = 0;
 let lastY = 0;
@@ -20,8 +22,13 @@ window.addEventListener("load", () => {
 
 //controls
 let controls = () => {
-  ctx.strokeStyle = sliderPicker.color.hexString;
-  ctx.lineWidth = sizePick.value;
+  if (eraserClick) {
+    eraserBrush();
+    ctx.lineWidth = sizePick.value;
+  } else {
+    ctx.strokeStyle = sliderPicker.color.hexString;
+    ctx.lineWidth = sizePick.value;
+  }
 };
 
 //drawing start, moving, end
@@ -89,6 +96,7 @@ canvas.addEventListener("touchend", () => drawEnd(), false);
 rainbowPick.addEventListener("click", () => {
   rainbowIsOn = !rainbowIsOn;
   rainbowPick.classList.add("rainbow-active");
+  eraserClick = false;
   if (!rainbowIsOn) {
     rainbowPick.classList.remove("rainbow-active");
   }
@@ -103,6 +111,18 @@ let isRainbowActive = () => {
     }
   }
 };
+
+let toggleButtons = () => {
+  if (rainbowIsOn) {
+    rainbowIsOn = false;
+    rainbowPick.classList.remove("rainbow-active");
+  } else if (eraserClick) {
+    eraserClick = false;
+  }
+};
+
+colorPick.addEventListener("click", toggleButtons);
+colorPick.addEventListener("touchstart", toggleButtons, { passive: false });
 
 //color pick
 let sliderPicker = new iro.ColorPicker("#sliderPicker", {
@@ -120,15 +140,18 @@ let sliderPicker = new iro.ColorPicker("#sliderPicker", {
   ],
 });
 
-let removeRainbow = () => {
-  if (rainbowIsOn) {
-    rainbowIsOn = false;
-    rainbowPick.classList.remove("rainbow-active");
+//eraser
+let eraserBrush = () => {
+  if (!eraserClick) {
+    eraserClick = true;
+    ctx.strokeStyle = "#f8f4eb";
   }
+  rainbowIsOn = false;
+  rainbowPick.classList.remove("rainbow-active");
 };
 
-colorPick.addEventListener("touchstart", removeRainbow);
-colorPick.addEventListener("click", removeRainbow);
+eraser.addEventListener("click", eraserBrush);
+eraser.addEventListener("touchstart", eraserBrush, { passive: false });
 
 //reset canvas
 resetCanvas.addEventListener("click", () => {
