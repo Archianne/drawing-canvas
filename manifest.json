@@ -1,0 +1,21 @@
+{
+    "name": "Drawing Canvas",
+    "short_name": "Drawing App",
+    "start_url": ".",
+    "background_color": "#023047",
+    "theme_color": "#219EBC",
+    "display": "standalone",
+    "icons": [
+      {
+        "src": "img/logo192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "img/logo512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
