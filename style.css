@@ -74,8 +74,6 @@ label {
 .rainbow-active {
   background-image: linear-gradient(red, orange, yellow, green, blue, purple);
   color: var(--accent2);
-  width: 35px;
-  height: 35px;
   border: inset 2px;
 }
 
