@@ -9,6 +9,7 @@
       src="https://kit.fontawesome.com/8a7df27cab.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro"></script>
     <title>Drawing Canvas</title>
   </head>
 
@@ -18,10 +19,10 @@
       <section id="controls">
         
         <!-- color -->
-        <label for="color"
-          >Color:
-          <input class="controls" type="color" name="color" id="color" />
-        </label>
+        <div id="color-pick">
+          <div class="colorPicker" id="sliderPicker"></div>
+        </div>
+
         <!-- rainbow -->
         <button class="controls" id="rainbow-button">
           🌈</i>
@@ -60,6 +61,7 @@
     </section>
 
     <!-- javascript -->
+    <script src="colorPicker.js"></script>
     <script src="main.js"></script>
   </body>
 </html>

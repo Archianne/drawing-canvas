@@ -1,8 +1,8 @@
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
-const colorPick = document.querySelector("#color");
 const rainbowPick = document.querySelector("#rainbow-button");
 const sizePick = document.querySelector("#size");
+const colorPick = document.querySelector("#color-pick")
 const resetCanvas = document.querySelector("#reset-button");
 const saveCanvas = document.querySelector("#save-button");
 
@@ -20,7 +20,7 @@ window.addEventListener("load", () => {
 
 //controls
 let controls = () => {
-  ctx.strokeStyle = colorPick.value;
+  ctx.strokeStyle = sliderPicker.color.hexString;
   ctx.lineWidth = sizePick.value;
 };
 
@@ -90,7 +90,6 @@ rainbowPick.addEventListener("click", () => {
   rainbowIsOn = !rainbowIsOn;
   rainbowPick.classList.add("rainbow-active");
   if (!rainbowIsOn) {
-    ctx.strokeStyle = colorPick.value;
     rainbowPick.classList.remove("rainbow-active");
   }
 });
@@ -104,6 +103,31 @@ let isRainbowActive = () => {
     }
   }
 };
+
+
+//color pick
+let sliderPicker = new iro.ColorPicker("#sliderPicker", {
+  width: 250,
+  color: "rgb(255, 0, 0)",
+  borderWidth: 1,
+  borderColor: "#fff",
+  layout: [
+    {
+      component: iro.ui.Slider,
+      options: {
+        sliderType: "hue",
+      },
+    },
+  ],
+});
+
+colorPick.addEventListener('click', () => {
+  if (rainbowIsOn) {
+  rainbowIsOn = false;
+  rainbowPick.classList.remove("rainbow-active");
+  }
+});
+
 
 //reset canvas
 resetCanvas.addEventListener("click", () => {
