@@ -3,7 +3,7 @@
 
 :root {
   --accent1: tomato;
-  --accent2: #003B6F;
+  --accent2: #003b6f;
   --accent3: #f8f4eb;
 
   --text-font: 12px "Poppins";
@@ -101,17 +101,17 @@ label {
   width: 100px;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-track {
   -webkit-appearance: none;
   background: var(--accent1);
   height: 5px;
 }
 
-input[type=range]:focus {
+input[type="range"]:focus {
   outline: none;
 }
 
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: 1px solid var(--accent3);
   border-radius: 50%;

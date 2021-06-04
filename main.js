@@ -91,7 +91,7 @@ rainbowPick.addEventListener("click", () => {
   rainbowPick.classList.add("rainbow-active");
   if (!rainbowIsOn) {
     ctx.strokeStyle = colorPick.value;
-    rainbowPick.classList.remove("rainbow-active");;
+    rainbowPick.classList.remove("rainbow-active");
   }
 });
 
