@@ -32,17 +32,25 @@ h1 {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  padding: 10px;
+  background-color: var(--accent3);
 }
 
 .controls {
   cursor: pointer;
 }
 
+.colors {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 button {
-  width: 30px;
-  height: 30px;
-  border: outset 2px;
+  width: 60px;
+  height: 40px;
+  border: solid 2px black;
   border-radius: 5px;
   background-color: var(--accent3);
   color: var(--accent2);
@@ -55,6 +63,12 @@ button:active {
 label {
   display: flex;
   align-items: center;
+}
+
+#rainbow-button {
+  border-radius: 50%;
+  margin-left: 10px;
+  width: 40px;
 }
 
 .rainbow-active {
@@ -97,7 +111,7 @@ label {
 input[type="range"]::-webkit-slider-runnable-track {
   -webkit-appearance: none;
   background: var(--accent1);
-  height: 5px;
+  height: 15px;
 }
 
 input[type="range"]:focus {
@@ -107,8 +121,7 @@ input[type="range"]:focus {
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: 1px solid var(--accent3);
-  border-radius: 50%;
-  height: 15px;
+  height: 25px;
   width: 15px;
   max-width: 80px;
   position: relative;
