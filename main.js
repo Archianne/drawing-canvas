@@ -2,7 +2,7 @@ const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 const rainbowPick = document.querySelector("#rainbow-button");
 const sizePick = document.querySelector("#size");
-const colorPick = document.querySelector("#color-pick")
+const colorPick = document.querySelector("#color-pick");
 const resetCanvas = document.querySelector("#reset-button");
 const saveCanvas = document.querySelector("#save-button");
 
@@ -104,7 +104,6 @@ let isRainbowActive = () => {
   }
 };
 
-
 //color pick
 let sliderPicker = new iro.ColorPicker("#sliderPicker", {
   width: 250,
@@ -121,13 +120,15 @@ let sliderPicker = new iro.ColorPicker("#sliderPicker", {
   ],
 });
 
-colorPick.addEventListener('click', () => {
+let removeRainbow = () => {
   if (rainbowIsOn) {
-  rainbowIsOn = false;
-  rainbowPick.classList.remove("rainbow-active");
+    rainbowIsOn = false;
+    rainbowPick.classList.remove("rainbow-active");
   }
-});
+};
 
+colorPick.addEventListener("touchstart", removeRainbow);
+colorPick.addEventListener("click", removeRainbow);
 
 //reset canvas
 resetCanvas.addEventListener("click", () => {

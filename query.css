@@ -1,0 +1,25 @@
+h1 {
+  display: none;
+}
+
+#controls {
+  flex-direction: column;
+}
+
+.controls {
+  margin: 10px;
+}
+
+#size-label {
+  width: 90vw;
+}
+
+#size {
+  width: 100%;
+}
+
+#reset-button,
+#save-button {
+  width: 40vw;
+  height: 25px;
+}
