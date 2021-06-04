@@ -76,10 +76,6 @@ label {
   width: 120px;
 }
 
-#size {
-  width: 100px;
-}
-
 /* canvas */
 #canvas {
   display: block;
@@ -95,4 +91,34 @@ label {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+/* input range style */
+
+.range {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  background: var(--accent1);
+  height: 5px;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid var(--accent3);
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  max-width: 80px;
+  position: relative;
+  bottom: 5px;
+  background-color: var(--accent2);
 }
